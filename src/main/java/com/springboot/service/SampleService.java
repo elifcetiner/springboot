@@ -1,8 +1,6 @@
 package com.springboot.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -23,8 +21,13 @@ public class SampleService {
 		
 		return sampleList;
 	}
-	
 	public Sample getSample(String id) {
 		return sampleList.stream().filter(sample -> sample.getId().equals(id)).findFirst().get();
+		
+	}
+	
+	public boolean delete(String id) {
+		var isRemoved = this.sampleList.removeIf(Sample -> Sample.getId().equals(id));
+		return isRemoved;
 	}
 }
